@@ -29,6 +29,7 @@ public class PrinterActivity extends Activity {
 	private QueueItem qitem;
 	private int count;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

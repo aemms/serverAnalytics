@@ -54,7 +54,7 @@ QUEUE
 3,printer2,thesis.pdf,Waiting,username2,40,4029KB,10:11:59 AM 4/4/2013
 4,printer2,news.pdf,Waiting,user34,3,423KB,10:11:59 AM 4/4/2013
 5,printer2,email.pdf,Waiting,admin23,3,77KB,10:11:59 AM 4/4/2013
-6,printer2,boardingpass.pdf,Waiting,username3,3,45KB,10:11:59 AM 4/4/2013
+6,printer2,boardingpasswithlongname.pdf,Waiting,username3,3,45KB,10:11:59 AM 4/4/2013
 7,printer2,results.pdf,Waiting,shemrajani,12,15KB,10:11:59 AM 4/4/2013
 PRINTER
 printer3,122.32.32.33,offline,43%

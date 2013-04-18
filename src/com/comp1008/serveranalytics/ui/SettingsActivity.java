@@ -45,7 +45,7 @@ public class SettingsActivity extends Activity implements OnCheckedChangeListene
 	}
  
 	private void initialize() {
-		keys.add("2MINS"); keys.add("5MINS"); keys.add("1HOUR"); keys.add("5HOURS"); keys.add("10HOURS");
+		keys = initializeKeys();
 		pollingTitle = (TextView) findViewById(R.id.pollingTitle);
 		freqSelection = (RadioGroup) findViewById(R.id.rgSettings);
 		freqSelection.setOnCheckedChangeListener(this);
@@ -53,8 +53,15 @@ public class SettingsActivity extends Activity implements OnCheckedChangeListene
 		loadPrefs();
 	}
 	
+	public static ArrayList<String> initializeKeys()
+	{
+		ArrayList<String> keyList = new ArrayList<String>();
+		keyList.add("0.02MINS"); keyList.add("5MINS"); keyList.add("1HOURS"); keyList.add("5HOURS"); keyList.add("10HOURS");
+		return keyList;
+	}
+	
 	private void loadPrefs(){
-	    SharedPreferences sp = getPreferences(MODE_PRIVATE);
+	    SharedPreferences sp = getSharedPreferences("polling", MODE_PRIVATE);
 	    boolean radio0 = sp.getBoolean(keys.get(0), false); //gets the value of the boolean from the saved prefs, the 'false' is the default value
 	    boolean radio1 = sp.getBoolean(keys.get(1), false);
 	    boolean radio2 = sp.getBoolean(keys.get(2), false);
@@ -101,7 +108,7 @@ public class SettingsActivity extends Activity implements OnCheckedChangeListene
 	}
 	
 	private void savePref(String key, boolean value){
-		SharedPreferences sp = getPreferences(MODE_PRIVATE);
+		SharedPreferences sp = getSharedPreferences("polling", MODE_PRIVATE);
 		Editor edit = sp.edit(); // Allow 'edit' mode
 	    edit.putBoolean(key, value); //puts the value of a radio button to true (is checked)
 	    edit.commit(); //commits changes
@@ -130,5 +137,6 @@ public class SettingsActivity extends Activity implements OnCheckedChangeListene
 			break;
 		}
 	}
+
 }
 
