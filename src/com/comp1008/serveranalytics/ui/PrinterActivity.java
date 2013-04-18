@@ -129,6 +129,7 @@ public class PrinterActivity extends Activity {
     	 * - Make the table dynamic
     	 * - Make it fit the screen
     	 * - Make it organize itself by queue
+    	 * 
     	*/
 	}
 	
