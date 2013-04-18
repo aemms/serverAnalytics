@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 public class DataThread extends Thread {
 	
@@ -24,15 +25,24 @@ public class DataThread extends Thread {
 		super.run();
 		while(true)
 		{
-			pollingTime = getPollingTime();
 			Log.v("server", "getting data");
+			ServerDataGetter dataGetter = new ServerDataGetter();
+			/*DataConverter data  = new DataConverter(dataGetter);
+			data.commitData();*/
+			Log.v("data", dataGetter.getServerText());
+			
+			pollingTime = getPollingTime();
 			int remainingTime = pollingTime;
 			while(remainingTime != 0)
 			{
 				try{sleep(1);}
 				catch(InterruptedException e)
 				{
-					//do stufff
+					Context context = ApplicationController.getContext();
+					CharSequence text = "Error in server polling thread, restart application";
+					int duration = Toast.LENGTH_LONG;
+					Toast toast = Toast.makeText(context, text, duration);
+					toast.show();
 				}
 				remainingTime--;
 				int currentPollingTime = getPollingTime();
