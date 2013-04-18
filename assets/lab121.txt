@@ -1,0 +1,5 @@
+COMPUTERS
+computer1,20,20,computer29
+computer2,-60,20,computer30
+DOORS
+END

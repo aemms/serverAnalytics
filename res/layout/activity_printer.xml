@@ -17,8 +17,11 @@
         android:layout_height="wrap_content"
         android:text="printername"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-    
-    <TableRow> <TextView /></TableRow>
+
+    <TableRow>
+
+        <TextView />
+    </TableRow>
 
     <TextView
         android:id="@+id/printerip"
@@ -26,60 +29,229 @@
         android:layout_height="wrap_content"
         android:text="IP Address:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-    
-     <TextView
+
+    <TextView
         android:id="@+id/printerip_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="123.12.13.14"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-     
-      <TableRow> <TextView /></TableRow>
-      
-      <TextView
+
+    <TableRow>
+
+        <TextView />
+    </TableRow>
+
+    <TextView
         android:id="@+id/printerstatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Status:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-    
-     <TextView
+
+    <TextView
         android:id="@+id/printerstatus_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Online"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-     
-     <TableRow> <TextView /></TableRow>
-     
-      <TextView
+
+    <TableRow>
+
+        <TextView />
+    </TableRow>
+
+    <TextView
         android:id="@+id/tonerremaining"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Toner Remaining:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-    
-     <TextView
+
+    <TextView
         android:id="@+id/tonerremaining_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="43%"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-     
-     <TableRow> <TextView /></TableRow>
-     
-      <TextView
+
+    <TableRow>
+
+        <TextView />
+    </TableRow>
+
+    <TextView
         android:id="@+id/queue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Queue:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-    
-     <TextView
+
+    <TextView
         android:id="@+id/queue_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No Items"
         android:textAppearance="?android:attr/textAppearanceSmall" />
+   
+    <TableLayout 
+         android:id = "@+id/queueTable"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_weight="0"
+         android:padding="5dp">
 
+     <TableRow android:layout_height="wrap_content">
+
+         <TextView
+             android:id="@+id/qnum_title"
+             android:layout_height="wrap_content"
+             android:text="@string/qnum_title" />
+
+         <TextView
+             android:id="@+id/name_title"
+             android:layout_height="wrap_content"
+             android:text="@string/document_name_title" />
+
+         <TextView
+             android:id="@+id/status_title"
+             android:layout_height="wrap_content"
+             android:text="@string/printing_status_title" />
+
+          <TextView
+              android:id="@+id/user_title"
+              android:layout_height="wrap_content"
+              android:text="@string/user_title" />
+
+          <TextView
+              android:id="@+id/pages_title"
+              android:layout_height="wrap_content"
+              android:text="@string/num_pages_title" />
+
+           <TextView
+               android:id="@+id/size_title"
+               android:layout_height="wrap_content"
+               android:text="@string/file_size_title" />
+
+            <TextView
+                android:id="@+id/time_title"
+                android:layout_height="wrap_content"
+                android:text="@string/print_time_title" />
+
+     </TableRow>
+
+     <TableRow android:layout_height="wrap_content">
+         <TextView
+             android:id="@+id/qnum1"
+             android:layout_height="wrap_content"
+             android:text="0" />
+
+         <TextView
+             android:id="@+id/name1"
+             android:layout_height="wrap_content"
+             android:text="0" />
+
+         <TextView
+             android:id="@+id/status1"
+             android:layout_height="wrap_content"
+             android:text="0" />
+
+          <TextView
+              android:id="@+id/user1"
+              android:layout_height="wrap_content"
+              android:text="0" />
+
+          <TextView
+              android:id="@+id/pages1"
+              android:layout_height="wrap_content"
+              android:text="0" />
+
+           <TextView
+               android:id="@+id/size1"
+               android:layout_height="wrap_content"
+               android:text="0" />
+
+            <TextView
+                android:id="@+id/time1"
+                android:layout_height="wrap_content"
+                android:text="0" />
+     </TableRow>
+
+     <TableRow android:layout_height="wrap_content">
+         <TextView
+             android:id="@+id/qnum2"
+             android:layout_height="wrap_content"
+             android:text="0" />
+
+         <TextView
+             android:id="@+id/name2"
+             android:layout_height="wrap_content"
+             android:text="0" />
+
+         <TextView
+             android:id="@+id/status2"
+             android:layout_height="wrap_content"
+             android:text="0" />
+
+          <TextView
+              android:id="@+id/user2"
+              android:layout_height="wrap_content"
+              android:text="0" />
+
+          <TextView
+              android:id="@+id/pages2"
+              android:layout_height="wrap_content"
+              android:text="0" />
+
+           <TextView
+               android:id="@+id/size2"
+               android:layout_height="wrap_content"
+               android:text="0" />
+
+            <TextView
+                android:id="@+id/time2"
+                android:layout_height="wrap_content"
+                android:text="0" />
+     </TableRow>
+  
+     <TableRow android:layout_height="wrap_content">
+         <TextView
+             android:id="@+id/qnum3"
+             android:layout_height="wrap_content"
+             android:text="0" />
+
+         <TextView
+             android:id="@+id/name3"
+             android:layout_height="wrap_content"
+             android:text="0" />
+
+         <TextView
+             android:id="@+id/status3"
+             android:layout_height="wrap_content"
+             android:text="0" />
+
+          <TextView
+              android:id="@+id/user3"
+              android:layout_height="wrap_content"
+              android:text="0" />
+
+          <TextView
+              android:id="@+id/pages3"
+              android:layout_height="wrap_content"
+              android:text="0" />
+
+           <TextView
+               android:id="@+id/size3"
+               android:layout_height="wrap_content"
+               android:text="0" />
+
+            <TextView
+                android:id="@+id/time3"
+                android:layout_height="wrap_content"
+                android:text="0" />
+     </TableRow>
+     
+</TableLayout>
+    
+    
 </TableLayout>

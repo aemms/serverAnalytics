@@ -11,7 +11,11 @@ import com.comp1008.serveranalytics.R;
  */
 public class ComputerActivity extends Activity {
 	
-	private String computerName;
+	private String name;
+	private String ip;
+	private String status;
+	private String room;
+	private String user;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +26,23 @@ public class ComputerActivity extends Activity {
     	Bundle computerGiven = getIntent().getExtras();
     	if (computerGiven!=null)
     	{
-    		computerName = computerGiven.getString("computer");
+    		name = computerGiven.getString("name");
+    		ip = computerGiven.getString("ip");
+    		status = computerGiven.getString("status");
+    		room = computerGiven.getString("room");
+    		user = computerGiven.getString("user");
     	}
     	
     	TextView compNameView = (TextView)findViewById(R.id.computername_content);
-    	compNameView.setText(computerName);
+    	compNameView.setText(name);
+    	TextView compIpView = (TextView)findViewById(R.id.computerip_content);
+    	compIpView.setText(ip);
+    	TextView compRoomView = (TextView)findViewById(R.id.computerlocation_content);
+    	compRoomView.setText(room);
+    	TextView compStatusView = (TextView)findViewById(R.id.computerstatus_content);
+    	compStatusView.setText(status);
+    	TextView compLoginView = (TextView)findViewById(R.id.computerlogin_content);
+    	compLoginView.setText(user);
     	
 		
 	}

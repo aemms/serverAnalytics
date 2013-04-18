@@ -1,5 +1,8 @@
 package com.comp1008.serveranalytics.ui;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +17,8 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
 import com.comp1008.serveranalytics.R;
+import com.comp1008.serveranalytics.datamanagement.Computer;
+import com.comp1008.serveranalytics.datamanagement.DataController;
 /*
  * Tabbed activity which contains the mapview on one tab and the list of machines in the lab
  * on the other tab.
@@ -21,27 +26,24 @@ import com.comp1008.serveranalytics.R;
 public class LabMapActivity extends Activity implements AdapterView.OnItemClickListener {
 	
 	private String labName;
-	//in proper implementation this array is populated by data controller
-	private String computers[] = { "Computer-1", "Computer-2", "Computer-3", "Computer-4", "Computer-5", "Computer-6"
-								 , "Computer-7", "Computer-8", "Computer-9", "Computer-10", "Computer-11", "Computer-12"
-								 , "Computer-13", "Computer-14", "Computer-15", "Computer-16", "Computer-17", "Computer-18"
-								 , "Computer-19", "Computer-20", "Computer-21", "Computer-22", "Computer-23", "Computer-24"
-								 , "Computer-25"};
+	ArrayList<Computer> computers;
+	String[] computerNames;
+	DataController data;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	
     	Bundle labNameGiven = getIntent().getExtras();
-    	if (labName!=null)
-    	{
-    		labName = labNameGiven.getString("lab");
-    	}
-    	
-    	
+    	labName = labNameGiven.getString("lab");  	
     	
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab_map);
-     
+        
+        //get the list of computers for this lab
+        data = new DataController(getBaseContext());
+        computers = getComputersInLab(data, labName);
+        computerNames = getComputerNameArray(computers);
+        
         //initialise the tabs
         TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
         tabHost.setup();
@@ -58,7 +60,7 @@ public class LabMapActivity extends Activity implements AdapterView.OnItemClickL
         tabHost.addTab(tabSpec);
         
         // Creates an ArrayAdapter for the String array computers.
-    	ArrayAdapter<String> adapter = new ArrayAdapter<String>(LabMapActivity.this, R.layout.lab_list_custom, computers);
+    	ArrayAdapter<String> adapter = new ArrayAdapter<String>(LabMapActivity.this, R.layout.lab_list_custom, computerNames);
     	// This ListView is in the XML activity_lab_map
     	ListView listOfComputers = (ListView) findViewById(R.id.listOfComputers);
     	listOfComputers.setAdapter(adapter);
@@ -68,18 +70,41 @@ public class LabMapActivity extends Activity implements AdapterView.OnItemClickL
 
     }
 
+	private String[] getComputerNameArray(ArrayList<Computer> computers) {
+		ArrayList<String> names = new ArrayList<String>();
+		for (Computer computer : computers)
+		{
+			names.add(computer.getName());
+		}
+		String []namesArray = new String[names.size()];
+		names.toArray(namesArray);
+		return namesArray;
+	}
+
+	private ArrayList<Computer> getComputersInLab(DataController data, String lab) {
+		Iterator<Computer> computerIterator = data.getComputerIterator();
+		ArrayList<Computer> labComputerList = new ArrayList<Computer>();
+		while (computerIterator.hasNext())
+		{
+			Computer computer = computerIterator.next();
+			if (computer.getLabRoom().equals(lab))
+			{
+				labComputerList.add(computer);
+			}
+		}
+		
+		return labComputerList;
+	}
+
 	public void onItemClick(AdapterView parent, View v, int position, long id) {
 
 		/* This Method should get list of computers in lab on button click, 
 		 * Passes string of lab name corresponding to button pressed to labMapActivity  */
-		String computerName = computers[position];
+		String computerName = computerNames[position];
 		Log.v("labClick", "Clicked computer " + computerName);
-		
-		Intent intent = new Intent(LabMapActivity.this, ComputerActivity.class);
-		Bundle computer = new Bundle();
-		computer.putString("computer", computerName);
-		intent.putExtras(computer);
-		startActivity(intent);
+		Computer computer = data.getComputerByName(computerName);
+		startComputerActivity(computer);
+
 		 
 	}
 
@@ -88,6 +113,24 @@ public class LabMapActivity extends Activity implements AdapterView.OnItemClickL
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.activity_lab_map, menu);
         return true;
+    }
+    
+    public String getLabName()
+    {
+    	return labName;
+    }
+    
+    public void startComputerActivity(Computer computer)
+    {
+		Intent intent = new Intent(LabMapActivity.this, ComputerActivity.class);
+		Bundle computerBundle = new Bundle();
+		computerBundle.putString("ip", computer.getIpAddress());
+		computerBundle.putString("user", computer.getCurrentLogin());
+		computerBundle.putString("name", computer.getName());
+		computerBundle.putString("room", computer.getLabRoom());
+		computerBundle.putString("status", computer.getStatus());
+		intent.putExtras(computerBundle);
+		startActivity(intent);
     }
     
 }

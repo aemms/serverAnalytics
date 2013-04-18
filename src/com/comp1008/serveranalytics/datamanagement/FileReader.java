@@ -16,18 +16,10 @@ public class FileReader {
 	private InputStream fileStream;
 	private AssetManager assetManager;
 	
-	public FileReader(String fileName, Context context)
+	public FileReader(String fileName, Context context) throws IOException
 	{
 		assetManager = context.getAssets();
-		try
-		{
-			initialiseInputStream(fileName);
-		}
-		catch (Exception IOException)
-		{
-			//handle exception somehow
-		}
-		
+		initialiseInputStream(fileName);		
 	}
 	
 	private void initialiseInputStream(String fileName) throws IOException

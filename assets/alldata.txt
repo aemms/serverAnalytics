@@ -1,0 +1,62 @@
+COMPUTERS
+123.34.56.1,online,Room 4.06,username,computer1
+123.34.56.2,online,Room 4.06,username,computer2
+123.34.56.3,online,Room 4.06,username,computer3
+123.34.56.4,online,Room 4.06,username,computer4
+123.34.56.5,online,Room 4.06,username,computer5
+123.34.56.6,online,room4.06,username,computer6
+123.34.56.7,online,Room 4.06,username,computer7
+123.34.56.8,online,Room 4.06,username,computer8
+123.34.56.9,online,Room 4.06,username,computer9
+123.34.56.10,online,Room 4.06,username,computer10
+123.34.56.11,online,Room 4.06,username,computer11
+123.34.56.12,online,Room 4.06,username,computer12
+123.34.56.13,online,Room 4.06,username,computer13
+123.34.56.14,online,Room 4.06,username,computer14
+123.34.56.15,online,Room 4.06,username,computer15
+123.34.56.16,online,Room 4.06,username,computer16
+123.34.56.17,online,Room 4.06,username,computer17
+123.34.56.18,online,Room 1.05,username,computer18
+123.34.56.19,online,Room 1.05,username,computer19
+123.34.56.20,online,Room 1.05,username,computer20
+123.34.56.21,online,Room 1.05,username,computer21
+123.34.56.22,online,Room 1.05,username,computer22
+123.34.56.23,online,Room 1.05,username,computer23
+123.34.56.24,online,Room 1.05,username,computer24
+123.34.56.25,online,Room 1.05,username,computer25
+123.34.56.26,online,Room 1.05,username,computer26
+123.34.56.27,online,Room 1.05,username,computer27
+123.34.56.28,online,Room 1.05,username,computer28
+123.34.56.29,online,Room 1.21,username,computer29
+123.34.56.30,online,Room 1.21,username,computer30
+123.34.56.31,online,Room 1.21,username,computer31
+123.34.56.32,online,Room 1.21,username,computer32
+123.34.56.33,online,Room 1.21,username,computer33
+123.34.56.34,online,Room 1.21,username,computer34
+123.34.56.35,online,Room 1.21,username,computer35
+123.34.56.36,online,Room 1.21,username,computer36
+123.34.56.37,online,Room 1.21,username,computer37
+123.34.56.38,online,Room 1.21,username,computer38
+123.34.56.39,online,Room 1.21,username,computer39
+123.34.56.40,online,Room 1.21,username,computer40
+PRINTERS
+PRINTER
+printer1,111.12.12.1,online,14%
+QUEUE
+1,printer1,Document1.doc,Printing,Saagar,6,122KB,10:11:12 AM 4/4/2013
+2,printer1,Milestone2.pdf,Waiting,Alex,3,566KB,10:11:12 AM 4/4/2013
+3,printer1,script.pdf,Waiting,Oscar,3,234KB,10:11:12 AM 4/4/2013
+PRINTER
+printer2,111.12.12.13,online,93%
+QUEUE
+1,printer2,Stuff.doc,Printing,username13,12,404KB,10:11:01 AM 4/4/2013
+2,printer2,TopSecret.pdf,Waiting,username2,40,4029KB,10:11:59 AM 4/4/2013
+3,printer2,thesis.pdf,Waiting,username2,40,4029KB,10:11:59 AM 4/4/2013
+PRINTER
+printer3,122.32.32.33,offline,43%
+QUEUE
+1,printer2,exam.doc,Waiting,username13,12,404KB,10:11:01 AM 4/4/2013
+2,printer2,answers.pdf,Waiting,username2,40,4029KB,10:11:59 AM 4/4/2013
+3,printer2,thesis.pdf,Waiting,username2,40,4029KB,10:11:59 AM 4/4/2013
+END
+END

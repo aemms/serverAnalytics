@@ -20,5 +20,13 @@
     <string name="title_activity_printer">PrinterActivity</string>
     <string name="SettingsPage">Settings</string>
     <string name="option5">Every 10 Hours</string>
+    <string name="settings_save">Save</string>
+    <string name="document_name_title">Name</string>
+    <string name="printing_status_title">Status</string>
+    <string name="user_title">User</string>
+    <string name="num_pages_title">Pages</string>
+    <string name="file_size_title">Size</string>
+    <string name="print_time_title">Time</string>
+    <string name="qnum_title">Queue</string>
 
 </resources>

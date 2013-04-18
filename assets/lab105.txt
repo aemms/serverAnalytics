@@ -1,0 +1,4 @@
+COMPUTERS
+computer1,20,20,computer18
+DOORS
+END
