@@ -29,39 +29,28 @@ public class ServerDataGetter {
 		URL url = null;
 		try {url = new URL(urlString);} 
 		catch (MalformedURLException e) {
-			Context context = ApplicationController.getContext();
-			CharSequence text = "Error connection to server";
-			int duration = Toast.LENGTH_SHORT;
-			Toast toast = Toast.makeText(context, text, duration);
-			toast.show();
+			handleException();
 		}
 		
 		URLConnection conn = null;
         try {conn = url.openConnection();}
         catch (IOException e)
         {
-			Context context = ApplicationController.getContext();
-			CharSequence text = "Error connection to server";
-			int duration = Toast.LENGTH_SHORT;
-			Toast toast = Toast.makeText(context, text, duration);
-			toast.show();
+        	handleException();
         }
         
         try{in = conn.getInputStream();}
         catch(IOException e)
         {
-			Context context = ApplicationController.getContext();
-			CharSequence text = "Error connection to server";
-			int duration = Toast.LENGTH_SHORT;
-			Toast toast = Toast.makeText(context, text, duration);
-			toast.show();
+			handleException();
         }
         
         return in;   
 	}
 	
-	public String getServerText()
+	public String getServerText() throws NoConnectionException
 	{
+		if (in==null) {throw new NoConnectionException();}
 		Scanner scan = new Scanner(in);
 		String data = "";
 		while (scan.hasNext())
@@ -69,5 +58,10 @@ public class ServerDataGetter {
 			data = data + scan.nextLine() + "\n";
 		}
 		return data;
+	}
+	
+	public void handleException()
+	{
+		//think of way to show toast here
 	}
 }

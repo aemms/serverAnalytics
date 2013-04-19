@@ -29,7 +29,14 @@ public class DataThread extends Thread {
 			ServerDataGetter dataGetter = new ServerDataGetter();
 			/*DataConverter data  = new DataConverter(dataGetter);
 			data.commitData();*/
-			Log.v("data", dataGetter.getServerText());
+			String data = "";
+			try {data = dataGetter.getServerText();}
+			catch(NoConnectionException e)
+			{
+				//do something
+			}
+			
+			Log.v("data", data);
 			
 			pollingTime = getPollingTime();
 			int remainingTime = pollingTime;
@@ -38,11 +45,7 @@ public class DataThread extends Thread {
 				try{sleep(1);}
 				catch(InterruptedException e)
 				{
-					Context context = ApplicationController.getContext();
-					CharSequence text = "Error in server polling thread, restart application";
-					int duration = Toast.LENGTH_LONG;
-					Toast toast = Toast.makeText(context, text, duration);
-					toast.show();
+					//think of way to show toast here
 				}
 				remainingTime--;
 				int currentPollingTime = getPollingTime();

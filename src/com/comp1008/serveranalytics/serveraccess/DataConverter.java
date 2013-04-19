@@ -17,7 +17,10 @@ public class DataConverter {
 	public DataConverter(ServerDataGetter dataGetter)
 	{
 		this.dataGetter = dataGetter;
-		data = dataGetter.getServerText();
+		try { data = dataGetter.getServerText();} 
+		catch (NoConnectionException e) {
+			
+		}
 	}
 	
 	public void commitData()
