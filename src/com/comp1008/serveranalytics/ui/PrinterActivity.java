@@ -62,7 +62,7 @@ public class PrinterActivity extends Activity {
     	//Create row of headings
     	TableRow header = new TableRow(this);
     	header.setId(10);
-    	header.setBackgroundColor(Color.DKGRAY);
+    	header.setBackgroundColor(Color.GRAY);
     	header.setLayoutParams(new LayoutParams(
     	LayoutParams.FILL_PARENT,
     	LayoutParams.WRAP_CONTENT));
@@ -135,7 +135,8 @@ public class PrinterActivity extends Activity {
     		
     		//Creates new row to store item in queue
     		TableRow tr = new TableRow(this); 
-    		if(count%2!=0) tr.setBackgroundColor(Color.GRAY);
+    		if(count%2!=0) tr.setBackgroundColor(Color.DKGRAY);
+    		if(count%2==0) tr.setBackgroundColor(Color.BLACK);
     		tr.setId(100+count);
     		tr.setLayoutParams(new LayoutParams(
     				LayoutParams.FILL_PARENT,
@@ -147,48 +148,42 @@ public class PrinterActivity extends Activity {
     		queueTextView.setId(200+count); 
     		queueTextView.setText(queue);
     		queueTextView.setPadding(2, 0, 5, 0);
-    		if (count%2!=0) queueTextView.setTextColor(Color.WHITE);
-    		if (count%2 ==0) queueTextView.setTextColor(Color.BLACK);
+    		queueTextView.setTextColor(Color.WHITE);
     		tr.addView(queueTextView);
     		
     		TextView nameTextView = new TextView(this);
     		nameTextView.setId(200+count); 
     		nameTextView.setText(name);
     		nameTextView.setPadding(2, 0, 5, 0);
-    		if (count%2!=0) nameTextView.setTextColor(Color.WHITE);
-    		if (count%2 ==0) nameTextView.setTextColor(Color.BLACK);
+    		queueTextView.setTextColor(Color.WHITE);
     		tr.addView(nameTextView);
     	
     		TextView statusTextView = new TextView(this);
     		statusTextView.setId(200+count); 
     		statusTextView.setText(status);
     		statusTextView.setPadding(2, 0, 5, 0);
-    		if (count%2!=0) statusTextView.setTextColor(Color.WHITE);
-    		if (count%2 ==0) statusTextView.setTextColor(Color.BLACK);
+    		queueTextView.setTextColor(Color.WHITE);
     		tr.addView(statusTextView);
     	
     		TextView userTextView = new TextView(this);
     		userTextView.setId(200+count); 
     		userTextView.setText(user);
     		userTextView.setPadding(2, 0, 5, 0);
-    		if (count%2!=0) userTextView.setTextColor(Color.WHITE);
-    		if (count%2 ==0) userTextView.setTextColor(Color.BLACK);
+    		queueTextView.setTextColor(Color.WHITE);
     		tr.addView(userTextView);
     		
     		TextView pagesTextView = new TextView(this);
     		pagesTextView.setId(200+count); 
     		pagesTextView.setText(pages);
     		pagesTextView.setPadding(2, 0, 5, 0);
-    		if (count%2!=0) pagesTextView.setTextColor(Color.WHITE);
-    		if (count%2 ==0) pagesTextView.setTextColor(Color.BLACK);
+    		queueTextView.setTextColor(Color.WHITE);
     		tr.addView(pagesTextView);
     		
     		TextView sizeTextView = new TextView(this);
     		sizeTextView.setId(200+count); 
     		sizeTextView.setText(size);
     		sizeTextView.setPadding(2, 0, 5, 0);
-    		if (count%2!=0) sizeTextView.setTextColor(Color.WHITE);
-    		if (count%2 ==0) sizeTextView.setTextColor(Color.BLACK);
+    		queueTextView.setTextColor(Color.WHITE);
     		tr.addView(sizeTextView);
     	
     		
@@ -196,8 +191,7 @@ public class PrinterActivity extends Activity {
     		timeTextView.setId(200+count); 
     		timeTextView.setText(time);
     		timeTextView.setPadding(2, 0, 5, 0);
-    		if (count%2!=0) timeTextView.setTextColor(Color.WHITE);
-    		if (count%2 ==0) timeTextView.setTextColor(Color.BLACK);
+    		queueTextView.setTextColor(Color.WHITE);
     		tr.addView(timeTextView);
     	
     		//Appends row to the Queue Table and increments counter

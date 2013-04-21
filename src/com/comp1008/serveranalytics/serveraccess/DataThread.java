@@ -41,16 +41,29 @@ public class DataThread extends Thread {
 				}
 				run();
 			}
-			DataConverter data  = new DataConverter(dataGetter);
-			try {data.commitData();} 
-			catch (IOException e1) {
+			DataConverter data = null;
+			try {data = new DataConverter(dataGetter);} 
+			catch (NoConnectionException e2) {
 				//by starting again we can keep looping until a connection is made
 				try {sleep(5000);}
-				catch (InterruptedException e)
+				catch (InterruptedException e1)
 				{
 					run();
 				}
 				run();
+			}
+			if (data!=null)
+			{
+				try {data.commitData();} 
+				catch (IOException e1) {
+					//by starting again we can keep looping until a connection is made
+					try {sleep(5000);}
+					catch (InterruptedException e)
+					{
+						run();
+					}
+					run();
+				}
 			}
 			
 			pollingTime = getPollingTime();

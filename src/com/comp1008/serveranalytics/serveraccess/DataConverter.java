@@ -14,13 +14,10 @@ public class DataConverter {
 	ServerDataGetter dataGetter;
 	
 	//gets the data string from the server and calls convertData to convert it into correct format for the app
-	public DataConverter(ServerDataGetter dataGetter)
+	public DataConverter(ServerDataGetter dataGetter) throws NoConnectionException
 	{
 		this.dataGetter = dataGetter;
-		try { data = convertData(dataGetter.getServerText());} 
-		catch (NoConnectionException e) {
-			
-		}
+		data = convertData(dataGetter.getServerText());
 	}
 	
 	//saves the data in the local alldata file
