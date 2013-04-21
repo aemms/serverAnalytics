@@ -11,10 +11,12 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
-
+/*
+ * The main data thread where data is fetched from the server, converted into the format the app can read, and then stored locally
+ */
 public class DataThread extends Thread {
 	
-	int pollingTime = 120000;
+	int pollingTime = 30000; //default 30 second polling time
 	public DataThread()
 	{
 		super();
@@ -67,6 +69,7 @@ public class DataThread extends Thread {
 					run();
 				}
 				remainingTime--;
+				//stop sleeping and poll again if the polling time is changed in settings
 				int currentPollingTime = getPollingTime();
 				if (currentPollingTime != pollingTime)
 				{
@@ -82,6 +85,7 @@ public class DataThread extends Thread {
 		super.start();
 	}
 	
+	//loads the time between server polls that user selected in the settings
 	private int getPollingTime()
 	{	
 		Context context = ApplicationController.getContext();
@@ -100,6 +104,7 @@ public class DataThread extends Thread {
 		return time;
 	}
 	
+	//converts a polling time preference key into an integer thread sleep time in ms
 	private int prefToTime(String key)
 	{
 		int time = 120000;

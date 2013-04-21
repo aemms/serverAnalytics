@@ -48,6 +48,7 @@ public class ServerDataGetter {
         return in;   
 	}
 	
+	//use the input from the HttpConnection to load the data into a string using a scanner
 	public String getServerText() throws NoConnectionException
 	{
 		if (in==null) {throw new NoConnectionException();}

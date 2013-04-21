@@ -20,13 +20,13 @@ public class LocalServerDataReader {
 	
 	public LocalServerDataReader(Context context) throws FileNotFoundException
 	{
-	
+		//open the local file to read
 		file = context.openFileInput("alldata");
 		in = new Scanner(file);
 
 
 	}
-	
+	//all code below is to parse the data file into data structures
 	public ArrayList<ArrayList> loadData()
 	{
 		ArrayList<ArrayList> data = new ArrayList<ArrayList>();
