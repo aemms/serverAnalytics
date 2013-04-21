@@ -93,9 +93,6 @@ public class MapView extends View {
         canvas.scale(mScaleFactor, mScaleFactor, mScaleCenterX, mScaleCenterY);
         genericPaint.setColor(Color.BLACK);
         canvas.drawRect(l-10000, t-10000,r+10000,b+10000, genericPaint);
-        
-        genericPaint.setColor(Color.RED);
-        canvas.drawRect(l, t,r,b, genericPaint);
         clipBounds = canvas.getClipBounds();    	
         map.draw(canvas);
         

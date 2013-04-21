@@ -56,7 +56,9 @@ public class SettingsActivity extends Activity implements OnCheckedChangeListene
 	public static ArrayList<String> initializeKeys()
 	{
 		ArrayList<String> keyList = new ArrayList<String>();
-		keyList.add("0.02MINS"); keyList.add("5MINS"); keyList.add("1HOURS"); keyList.add("5HOURS"); keyList.add("10HOURS");
+		//assign the key values for the polling time options
+		//these keys are converted into sleep times by the polling thread
+		keyList.add("0.166667MINS"); keyList.add("0.5MINS"); keyList.add("2MINS"); keyList.add("5MINS"); keyList.add("30MINS");
 		return keyList;
 	}
 	
