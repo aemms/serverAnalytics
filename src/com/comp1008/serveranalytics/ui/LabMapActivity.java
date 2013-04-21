@@ -124,11 +124,7 @@ public class LabMapActivity extends Activity implements AdapterView.OnItemClickL
     {
 		Intent intent = new Intent(LabMapActivity.this, ComputerActivity.class);
 		Bundle computerBundle = new Bundle();
-		computerBundle.putString("ip", computer.getIpAddress());
-		computerBundle.putString("user", computer.getCurrentLogin());
 		computerBundle.putString("name", computer.getName());
-		computerBundle.putString("room", computer.getLabRoom());
-		computerBundle.putString("status", computer.getStatus());
 		intent.putExtras(computerBundle);
 		startActivity(intent);
     }

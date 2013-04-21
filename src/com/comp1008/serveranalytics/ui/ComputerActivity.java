@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import com.comp1008.serveranalytics.R;
+import com.comp1008.serveranalytics.datamanagement.Computer;
+import com.comp1008.serveranalytics.datamanagement.DataController;
 /*
  * Activity which shows all information available about a chosen computer
  */
@@ -27,11 +29,10 @@ public class ComputerActivity extends Activity {
     	if (computerGiven!=null)
     	{
     		name = computerGiven.getString("name");
-    		ip = computerGiven.getString("ip");
-    		status = computerGiven.getString("status");
-    		room = computerGiven.getString("room");
-    		user = computerGiven.getString("user");
+    		loadData();
+
     	}
+    	
     	
     	TextView compNameView = (TextView)findViewById(R.id.computername_content);
     	compNameView.setText(name);
@@ -53,6 +54,17 @@ public class ComputerActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_computer, menu);
 		return true;
 		
+	}
+	
+	private void loadData()
+	{
+		DataController data = new DataController(this);
+		Computer computer = data.getComputerByName(name);
+		name = computer.getName();
+		ip = computer.getIpAddress();
+		room = computer.getLabRoom();
+		user = computer.getCurrentLogin();
+		status = computer.getStatus();
 	}
 
 }
