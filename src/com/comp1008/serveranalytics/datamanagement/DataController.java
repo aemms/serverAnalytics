@@ -1,5 +1,6 @@
 package com.comp1008.serveranalytics.datamanagement;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,7 +25,7 @@ public class DataController {
 		{
 			this.localDataReader = new LocalServerDataReader(context);
 		}
-		catch (IOException e)
+		catch (FileNotFoundException e)
 		{
 			CharSequence text = "Couldn't open data file";
 			int duration = Toast.LENGTH_SHORT;

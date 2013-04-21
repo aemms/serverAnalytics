@@ -1,6 +1,7 @@
 package com.comp1008.serveranalytics.datamanagement;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -13,15 +14,15 @@ import android.content.Context;
 
 public class LocalServerDataReader {
 	
-	private FileReader file;
+	private FileInputStream file;
 	private Scanner in;
 	private String line;
 	
-	public LocalServerDataReader(Context context) throws IOException
+	public LocalServerDataReader(Context context) throws FileNotFoundException
 	{
 	
-		file = new FileReader("alldata.txt", context);
-		in = new Scanner(file.getInputStream());
+		file = context.openFileInput("alldata");
+		in = new Scanner(file);
 
 
 	}

@@ -1,5 +1,6 @@
 package com.comp1008.serveranalytics.serveraccess;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -26,17 +27,29 @@ public class DataThread extends Thread {
 		while(true)
 		{
 			Log.v("server", "getting data");
-			ServerDataGetter dataGetter = new ServerDataGetter();
-			/*DataConverter data  = new DataConverter(dataGetter);
-			data.commitData();*/
-			String data = "";
-			try {data = dataGetter.getServerText();}
-			catch(NoConnectionException e)
+			ServerDataGetter dataGetter = null;
+			try {dataGetter = new ServerDataGetter();} 
+			catch (NoConnectionException e) 
 			{
-				//do something
+				//by starting again we can keep looping until a connection is made
+				try {sleep(5000);}
+				catch (InterruptedException e1)
+				{
+					run();
+				}
+				run();
 			}
-			
-			Log.v("data", data);
+			DataConverter data  = new DataConverter(dataGetter);
+			try {data.commitData();} 
+			catch (IOException e1) {
+				//by starting again we can keep looping until a connection is made
+				try {sleep(5000);}
+				catch (InterruptedException e)
+				{
+					run();
+				}
+				run();
+			}
 			
 			pollingTime = getPollingTime();
 			int remainingTime = pollingTime;
@@ -45,7 +58,13 @@ public class DataThread extends Thread {
 				try{sleep(1);}
 				catch(InterruptedException e)
 				{
-					//think of way to show toast here
+					//by starting again we can keep looping until a connection is made
+					try {sleep(5000);}
+					catch (InterruptedException e1)
+					{
+						run();
+					}
+					run();
 				}
 				remainingTime--;
 				int currentPollingTime = getPollingTime();
