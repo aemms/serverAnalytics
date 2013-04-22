@@ -72,18 +72,7 @@ public class MapFileReader {
 		    }
 		    else
 		    {
-		    	name = name+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	x = x+Character.toString(c);
+		    	x= x+Character.toString(c);
 		    }
 		}
 		for (charCount = charCount+1; charCount < line.length(); charCount++){

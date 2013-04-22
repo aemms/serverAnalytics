@@ -42,6 +42,7 @@ public class MapComputer extends MapObject{
 		if (assignedComputer != null)
 		{
 			canvas.drawText(assignedComputer.getName(), super.getX(), super.getY()+height+10, textPaint);
+			canvas.drawText(assignedComputer.getStatus(), super.getX(), super.getY()+height+25, textPaint);
 		}
 		else
 		{
