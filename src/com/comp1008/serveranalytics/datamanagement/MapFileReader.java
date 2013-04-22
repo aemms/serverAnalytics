@@ -17,14 +17,34 @@ public class MapFileReader {
 	private ArrayList<MapComputer> computers = new ArrayList<MapComputer>();
 	private Scanner in;
 	Context readerContext;
+	private float bgHf = 0;
+	private float bgWf = 0;
+	private float bgXf = 0;
+	private float bgYf = 0;
 	
+	public float getBgHf() {
+		return bgHf;
+	}
+
+	public float getBgWf() {
+		return bgWf;
+	}
+
+	public float getBgXf() {
+		return bgXf;
+	}
+
+	public float getBgYf() {
+		return bgYf;
+	}
+
 	public MapFileReader(String roomName, Context context) throws IOException
 	{
 		readerContext = context;
 		file = new FileReader(roomName, context);
 		InputStream input = file.getInputStream();
 		in = new Scanner(input); 
-		loadComputers();
+		loadMap();
 	}
 	
 	public ArrayList<MapComputer> getComputers()
@@ -32,7 +52,12 @@ public class MapFileReader {
 		return computers;
 	}
 	
-	private void loadComputers()
+	public ArrayList<MapDoor> getDoors()
+	{
+		return doors;
+	}
+	
+	private void loadMap()
 	{
 		while (in.hasNext())
 		{
@@ -42,9 +67,24 @@ public class MapFileReader {
 				while (in.hasNext())
 				{
 					line = in.nextLine();
-					if(!line.equals("DOORS"))
+					if(!line.equals("BACKGROUND"))
 					{
 						parseComputer(line);
+					}
+					else
+					{
+						line = in.nextLine();
+						parseBackground(line);
+						break;
+					}
+				}
+				in.nextLine();
+				while (in.hasNext())
+				{
+					line = in.nextLine();
+					if (!line.equals("END"))
+					{
+						parseDoor(line);
 					}
 					else
 					{
@@ -56,6 +96,134 @@ public class MapFileReader {
 		}		
 	}
 	
+	private void parseDoor(String line) 
+	{
+		String x = "";
+		String y = "";
+		String o = "";
+		int charCount = 0;
+		for (charCount = 0; charCount < line.length(); charCount++){
+		    char c = line.charAt(charCount);        
+		    if (c == ',')
+		    {
+		    	break;
+		    }
+		    else
+		    {
+		    	x= x+Character.toString(c);
+		    }
+		}
+		for (charCount = charCount+1; charCount < line.length(); charCount++){
+		    char c = line.charAt(charCount);        
+		    if (c == ',')
+		    {
+		    	break;
+		    }
+		    else
+		    {
+		    	y = y+Character.toString(c);
+		    }
+		}
+		for (charCount = charCount+1; charCount < line.length(); charCount++){
+		    char c = line.charAt(charCount);        
+		    if (c == '\n')
+		    {
+		    	break;
+		    }
+		    else
+		    {
+		    	o = o+Character.toString(c);
+		    }
+		}
+		float doorX = 0;
+		float doorY = 0;
+		try
+		{
+			doorX = Float.parseFloat(x);
+			doorY = Float.parseFloat(y);
+		}
+		catch (NumberFormatException e)
+		{
+			CharSequence text = "Error Loading Map File";
+			int duration = Toast.LENGTH_SHORT;
+			Toast toast = Toast.makeText(readerContext, text, duration);
+			toast.show();
+		}
+		
+		MapDoor door = new MapDoor(doorX,doorY,o);
+		doors.add(door);
+	}
+
+	private void parseBackground(String line) 
+	{
+		String bgX = "";
+		String bgY = "";
+		String bgWidth = "";
+		String bgHeight = "";
+		int charCount = 0;
+		for (charCount = 0; charCount < line.length(); charCount++){
+		    char c = line.charAt(charCount);        
+		    if (c == ',')
+		    {
+		    	break;
+		    }
+		    else
+		    {
+		    	bgX= bgX+Character.toString(c);
+		    }
+		}
+		for (charCount = charCount+1; charCount < line.length(); charCount++){
+		    char c = line.charAt(charCount);        
+		    if (c == ',')
+		    {
+		    	break;
+		    }
+		    else
+		    {
+		    	bgY = bgY+Character.toString(c);
+		    }
+		}
+		for (charCount = charCount+1; charCount < line.length(); charCount++){
+		    char c = line.charAt(charCount);        
+		    if (c == ',')
+		    {
+		    	break;
+		    }
+		    else
+		    {
+		    	bgWidth = bgWidth+Character.toString(c);
+		    }
+		}
+		for (charCount = charCount+1; charCount < line.length(); charCount++){
+		    char c = line.charAt(charCount);        
+		    if (c == '\n')
+		    {
+		    	break;
+		    }
+		    else
+		    {
+		    	bgHeight = bgHeight+Character.toString(c);
+		    }
+		}
+
+		try
+		{
+			bgHf = Float.parseFloat(bgHeight);
+			bgWf = Float.parseFloat(bgWidth);
+			bgXf = Float.parseFloat(bgX);
+			bgYf = Float.parseFloat(bgY);
+		}
+		catch (NumberFormatException e)
+		{
+			CharSequence text = "Error Loading Map File";
+			int duration = Toast.LENGTH_SHORT;
+			Toast toast = Toast.makeText(readerContext, text, duration);
+			toast.show();
+		}
+		
+		
+	}
+
 	private void parseComputer(String line)
 	{
 		String name = "";

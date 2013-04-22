@@ -29,5 +29,9 @@ COMPUTERS
 380,620,klay
 460,620,gmacgregor
 540,620,bebbers
+BACKGROUND
+10,10,700,780
 DOORS
+400,790,horizontal
+710,40,vertical
 END

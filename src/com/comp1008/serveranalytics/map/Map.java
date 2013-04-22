@@ -8,7 +8,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Paint.Style;
 import android.widget.Toast;
 
 import com.comp1008.serveranalytics.R;
@@ -24,6 +27,10 @@ public class Map {
 	private ArrayList<MapDoor> doors = new ArrayList<MapDoor>();
 	private ArrayList<MapComputer> computers = new ArrayList<MapComputer>();
 	private MapFileReader mapFile;
+	private float bgHf = 0; //background coordinates height,width,x,y
+	private float bgWf = 0;
+	private float bgXf = 0;
+	private float bgYf = 0;
 	
 	
 	public Map(Context context, String labName)
@@ -45,10 +52,15 @@ public class Map {
 		if (mapFile != null)
 		{	
 			computers = mapFile.getComputers();
+			doors = mapFile.getDoors();
 			for (MapComputer computer: computers)
 			{
 				computer.setImage(computerImage);
 			}
+			bgHf = mapFile.getBgHf();
+			bgWf = mapFile.getBgWf();
+			bgXf = mapFile.getBgXf();
+			bgYf = mapFile.getBgYf();
 		}
 		
 		
@@ -74,9 +86,17 @@ public class Map {
 
 	public void draw(Canvas canvas)
 	{
+		Paint backgroundPaint = new Paint();
+		backgroundPaint.setColor(Color.DKGRAY);
+		backgroundPaint.setStyle(Style.FILL);
+		canvas.drawRect(bgXf,bgYf,bgXf+bgWf,bgYf+bgHf,backgroundPaint);
 		for(MapComputer computer : computers)
 		{
 			computer.draw(canvas);
+		}
+		for(MapDoor door : doors)
+		{
+			door.draw(canvas);
 		}
 	}
 	

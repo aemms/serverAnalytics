@@ -19,5 +19,9 @@ COMPUTERS
 300,500,Incus
 380,500,Thoracic
 460,500,Cocyx
+BACKGROUND
+60,10,550,650
 DOORS
+300,660,horizontal
+610,580,vertical
 END

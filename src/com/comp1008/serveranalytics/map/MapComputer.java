@@ -36,13 +36,23 @@ public class MapComputer extends MapObject{
 	@Override
 	public void draw(Canvas canvas)
 	{
+		textPaint.setColor(Color.WHITE);
 		super.draw(canvas);		
 		float height = super.getImage().getHeight();
 		
 		if (assignedComputer != null)
 		{
 			canvas.drawText(assignedComputer.getName(), super.getX(), super.getY()+height+10, textPaint);
+			if (assignedComputer.getStatus().equals("online"))
+			{
+				textPaint.setColor(Color.GREEN);
+			}
+			else
+			{
+				textPaint.setColor(Color.parseColor("#FF4545"));
+			}
 			canvas.drawText(assignedComputer.getStatus(), super.getX(), super.getY()+height+25, textPaint);
+				
 		}
 		else
 		{
