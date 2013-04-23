@@ -16,9 +16,11 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.widget.Toast;
 
 import com.comp1008.serveranalytics.map.Map;
 import com.comp1008.serveranalytics.map.MapComputer;
@@ -57,6 +59,10 @@ public class MapView extends View {
 		LabMapActivity mapActivity = (LabMapActivity)this.getContext();
 		mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
 		map = new Map(context, mapActivity.getLabName());
+		CharSequence text = "Pinch to zoom, hold finger on a computer for one second to open its info page";
+		int duration = Toast.LENGTH_LONG;
+		Toast toast = Toast.makeText(this.getContext(), text, duration);
+		toast.show();
 	}
 	
 	public MapView(Context context, AttributeSet attribs) {
@@ -64,6 +70,10 @@ public class MapView extends View {
 		LabMapActivity mapActivity = (LabMapActivity)this.getContext();
 		mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
 		map = new Map(context, mapActivity.getLabName());
+		CharSequence text = "Pinch to zoom, hold finger on a computer for one second to open its info page";
+		int duration = Toast.LENGTH_LONG;
+		Toast toast = Toast.makeText(this.getContext(), text, duration);
+		toast.show();
 	}
 	
     public MapView(Context context, AttributeSet attrs, int defStyle) {
@@ -71,6 +81,10 @@ public class MapView extends View {
 		LabMapActivity mapActivity = (LabMapActivity)this.getContext();
 		mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
 		map = new Map(context, mapActivity.getLabName());
+		CharSequence text = "Pinch to zoom, hold finger on a computer for one second to open its info page";
+		int duration = Toast.LENGTH_LONG;
+		Toast toast = Toast.makeText(this.getContext(), text, duration);
+		toast.show();
     }
 	
 	@Override
@@ -116,7 +130,18 @@ public class MapView extends View {
 
     // The 'active pointer' is the one currently moving our object.
     private int mActivePointerId = INVALID_POINTER_ID;
+	//set up gesture detector to detect long presses on computers on map
+    final GestureDetector gestureDetector = new GestureDetector(this.getContext(), new GestureDetector.SimpleOnGestureListener() {
+	    public void onLongPress(MotionEvent e) {
+	        float x = e.getX();
+	        float y = e.getY();
+	    	checkComputerTouch(x,y);
+	    }
+	});
     public boolean onTouchEvent(MotionEvent ev) {
+    	
+    	//check for long press
+    	gestureDetector.onTouchEvent(ev);
     	// Let the ScaleGestureDetector inspect all events.
     	mScaleDetector.onTouchEvent(ev);
     
@@ -130,30 +155,7 @@ public class MapView extends View {
         
         		mLastTouchX = x;
         		mLastTouchY = y;
-        		mActivePointerId = ev.getPointerId(0);
-        		
-        		//check if a computer has been tapped
-        		Iterator<MapComputer> computers = map.getMapComputers();
-        		while (computers.hasNext())
-        		{
-        			MapComputer computer = computers.next();
-        			float compX = computer.getX();
-        			float compY = computer.getY();
-        			float width = computer.getImage().getWidth();
-        			
-        			float newX = x / mScaleFactor + clipBounds.left;
-        			float newY = y / mScaleFactor + clipBounds.top;
-        			
-        			Log.v("touch", "compX = " + compX + " || compY = " + compY + " || width = " + width);
-        			if(newX > compX && newX < compX+width && newY > compY && newY <compY+width)
-        			{
-        				Log.v("touch", "computer touched");
-        				LabMapActivity activity = (LabMapActivity) this.getContext();
-        				activity.startComputerActivity(computer.getAssignedComputer());
-        			}
-        		}
-        		
-        		
+        		mActivePointerId = ev.getPointerId(0);       		
         		break;
     		}
         
@@ -223,6 +225,29 @@ public class MapView extends View {
     		invalidate();
     		return true;
     	}
+    }
+    
+    private void checkComputerTouch(float x, float y)
+    {
+		Iterator<MapComputer> computers = map.getMapComputers();
+		while (computers.hasNext())
+		{
+			MapComputer computer = computers.next();
+			float compX = computer.getX();
+			float compY = computer.getY();
+			float width = computer.getImage().getWidth();
+			
+			float newX = x / mScaleFactor + clipBounds.left;
+			float newY = y / mScaleFactor + clipBounds.top;
+			
+			Log.v("touch", "compX = " + compX + " || compY = " + compY + " || width = " + width);
+			if(newX > compX && newX < compX+width && newY > compY && newY <compY+width)
+			{
+				Log.v("touch", "computer touched");
+				LabMapActivity activity = (LabMapActivity) this.getContext();
+				activity.startComputerActivity(computer.getAssignedComputer());
+			}
+		}
     }
 
 }
