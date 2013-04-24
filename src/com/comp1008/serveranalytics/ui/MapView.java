@@ -22,6 +22,7 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.Toast;
 
+import com.comp1008.serveranalytics.datamanagement.Computer;
 import com.comp1008.serveranalytics.map.Map;
 import com.comp1008.serveranalytics.map.MapComputer;
 
@@ -240,12 +241,16 @@ public class MapView extends View {
 			float newX = x / mScaleFactor + clipBounds.left;
 			float newY = y / mScaleFactor + clipBounds.top;
 			
-			Log.v("touch", "compX = " + compX + " || compY = " + compY + " || width = " + width);
 			if(newX > compX && newX < compX+width && newY > compY && newY <compY+width)
 			{
 				Log.v("touch", "computer touched");
 				LabMapActivity activity = (LabMapActivity) this.getContext();
-				activity.startComputerActivity(computer.getAssignedComputer());
+				//get Computer object associated with this MapComputer object
+				Computer actualComputer = computer.getAssignedComputer();
+				if (actualComputer!=null)
+				{
+					activity.startComputerActivity(actualComputer);
+				}
 			}
 		}
     }
