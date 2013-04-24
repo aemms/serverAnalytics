@@ -25,7 +25,7 @@ android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1.04"
             android:text="@string/option_prompt"
-            android:textSize="22sp"  />
+            android:textSize="22sp" />
 
         <RadioGroup
             android:id="@+id/rgSettings"
@@ -38,7 +38,7 @@ android:layout_width="fill_parent"
                 android:layout_width="258dp"
                 android:layout_height="match_parent"
                 android:text="@string/option1"
-                android:textSize="20sp"  />
+                android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/radio1"
@@ -52,7 +52,7 @@ android:layout_width="fill_parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/option3"
-                android:textSize="20sp"  />
+                android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/radio3"
@@ -60,8 +60,7 @@ android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/option4"
                 android:textSize="20sp" />
-                
-                
+
             <RadioButton
                 android:id="@+id/radio4"
                 android:layout_width="wrap_content"
@@ -69,8 +68,8 @@ android:layout_width="fill_parent"
                 android:text="@string/option5"
                 android:textSize="20sp" />
         </RadioGroup>
-    </LinearLayout>
 
+    </LinearLayout>
 
 </LinearLayout>
  </ScrollView>

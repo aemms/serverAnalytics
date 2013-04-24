@@ -28,5 +28,8 @@
     <string name="file_size_title">Size</string>
     <string name="print_time_title">Time</string>
     <string name="qnum_title">Queue</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>

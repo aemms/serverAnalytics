@@ -76,11 +76,11 @@
 		        android:gravity="center" />
 		    
 		    <TextView
-		    android:id="@+id/creditsTV"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:text="Credits"
-		    android:gravity="right" />
+			    android:id="@+id/creditsTV"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:text="Credits"
+			    android:gravity="right" />
 		
 		</LinearLayout>
 
