@@ -62,70 +62,13 @@ public class LocalServerDataReader {
 	}
 	
 	private Computer parseComputer(String line)
-	{
-		
-		int charCount = 0;
-		String ip = "";
-		String status = "";
-		String room = "";
-		String user = "";
-		String name = "";
-		
-		for (charCount = 0; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	ip = ip+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	status = status+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	room = room+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	user = user+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == '\n')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	name = name+Character.toString(c);
-		    }
-		}
+	{		
+		String ip = Parser.parseItemFromLine(',', ',', line, 0);
+		String status = Parser.parseItemFromLine(',', ',', line, 1);
+		String room = Parser.parseItemFromLine(',', ',', line, 2);
+		String user = Parser.parseItemFromLine(',', ',', line, 3);
+		String name = Parser.parseItemFromLine(',', '\n', line, 4);      
+
 		Computer computer = new Computer(ip, status, room, user, name);
 		return computer;
 	}
@@ -176,50 +119,10 @@ public class LocalServerDataReader {
 			}
 			else if (!gotPrinter)
 			{
-				for (charCount = 0; charCount < line.length(); charCount++){
-				    char c = line.charAt(charCount);        
-				    if (c == ',')
-				    {
-				    	break;
-				    }
-				    else
-				    {
-				    	name = name+Character.toString(c);
-				    }
-				}
-				for (charCount = charCount+1; charCount < line.length(); charCount++){
-				    char c = line.charAt(charCount);        
-				    if (c == ',')
-				    {
-				    	break;
-				    }
-				    else
-				    {
-				    	ip = ip+Character.toString(c);
-				    }
-				}
-				for (charCount = charCount+1; charCount < line.length(); charCount++){
-				    char c = line.charAt(charCount);        
-				    if (c == ',')
-				    {
-				    	break;
-				    }
-				    else
-				    {
-				    	status = status+Character.toString(c);
-				    }
-				}
-				for (charCount = charCount+1; charCount < line.length(); charCount++){
-				    char c = line.charAt(charCount);        
-				    if (c == '\n')
-				    {
-				    	break;
-				    }
-				    else
-				    {
-				    	tonerRemaining = tonerRemaining+Character.toString(c);
-				    }
-				}
+				name = Parser.parseItemFromLine(',', ',', line, 0);
+				ip = Parser.parseItemFromLine(',', ',', line, 1);
+				status = Parser.parseItemFromLine(',', ',', line, 2);
+				tonerRemaining = Parser.parseItemFromLine(',', '\n', line, 3);    
 				gotPrinter = true;
 			}
 			line = in.nextLine();
@@ -250,103 +153,16 @@ public class LocalServerDataReader {
 	
 	private QueueItem parseQueueItem(String line)
 	{
-		String qnum = "";
-		String printer = "";
-		String name = "";
-		String status = "";
-		String user = "";
-		String pages = "";
-		String size = "";
-		String time = "";
-		int charCount = 0;
-		for (charCount = 0; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	qnum = qnum+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	printer = qnum+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	name = name+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	status = status+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	user = user+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	pages = pages+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	size = size+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == '\n')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	time = time+Character.toString(c);
-		    }
-		}
+		String qnum = Parser.parseItemFromLine(',', ',', line, 0);
+		String printer = Parser.parseItemFromLine(',', ',', line, 1);
+		String name = Parser.parseItemFromLine(',', ',', line, 2);
+		String status = Parser.parseItemFromLine(',', ',', line, 3);
+		String user = Parser.parseItemFromLine(',', ',', line, 4);
+		String pages = Parser.parseItemFromLine(',', ',', line, 5);
+		String size = Parser.parseItemFromLine(',', ',', line, 6);
+		String time = Parser.parseItemFromLine(',', '\n', line, 7);
+
+	
 		
 		return new QueueItem (qnum, printer, name, status, user, pages, size, time);
 	}

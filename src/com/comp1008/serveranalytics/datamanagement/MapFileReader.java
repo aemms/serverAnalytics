@@ -98,43 +98,10 @@ public class MapFileReader {
 	
 	private void parseDoor(String line) 
 	{
-		String x = "";
-		String y = "";
-		String o = "";
-		int charCount = 0;
-		for (charCount = 0; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	x= x+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	y = y+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == '\n')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	o = o+Character.toString(c);
-		    }
-		}
+		String x = Parser.parseItemFromLine(',', ',', line, 0);
+		String y = Parser.parseItemFromLine(',', ',', line, 1);
+		String o = Parser.parseItemFromLine(',', '\n', line, 2);
+
 		float doorX = 0;
 		float doorY = 0;
 		try
@@ -156,55 +123,10 @@ public class MapFileReader {
 
 	private void parseBackground(String line) 
 	{
-		String bgX = "";
-		String bgY = "";
-		String bgWidth = "";
-		String bgHeight = "";
-		int charCount = 0;
-		for (charCount = 0; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	bgX= bgX+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	bgY = bgY+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	bgWidth = bgWidth+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == '\n')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	bgHeight = bgHeight+Character.toString(c);
-		    }
-		}
+		String bgX = Parser.parseItemFromLine(',', ',', line, 0);
+		String bgY = Parser.parseItemFromLine(',', ',', line, 1);
+		String bgWidth = Parser.parseItemFromLine(',', ',', line, 2);
+		String bgHeight = Parser.parseItemFromLine(',', '\n', line, 3);
 
 		try
 		{
@@ -226,62 +148,16 @@ public class MapFileReader {
 
 	private void parseComputer(String line)
 	{
-		String name = "";
-		String x = "";
-		String y = "";
-		String computerName = "";
-		int charCount = 0;
-		
-		for (charCount = 0; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	x= x+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == ',')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	y = y+Character.toString(c);
-		    }
-		}
-		for (charCount = charCount+1; charCount < line.length(); charCount++){
-		    char c = line.charAt(charCount);        
-		    if (c == '\n')
-		    {
-		    	break;
-		    }
-		    else
-		    {
-		    	computerName = computerName+Character.toString(c);
-		    }
-		}
-		
+		String x = Parser.parseItemFromLine(',', ',', line, 0);
+		String y = Parser.parseItemFromLine(',', ',', line, 1);
+		String computerName = Parser.parseItemFromLine(',', '\n', line, 2);
+
 		float xF = 0;
 		float yF = 0;
 		
 		try
 		{
 			xF = Float.parseFloat(x);
-		}
-		catch (NumberFormatException e)
-		{
-			CharSequence text = "Error Loading Map File";
-			int duration = Toast.LENGTH_SHORT;
-			Toast toast = Toast.makeText(readerContext, text, duration);
-			toast.show();
-		}
-		try
-		{
 			yF = Float.parseFloat(y);
 		}
 		catch (NumberFormatException e)
