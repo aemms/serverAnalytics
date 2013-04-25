@@ -31,6 +31,7 @@ public class MapComputer extends MapObject{
 		textPaint.setColor(Color.WHITE);
 		textPaint.setAntiAlias(true);
 		
+		
 	}
 	
 	@Override

@@ -39,7 +39,7 @@ public class Map {
 		Bitmap computerImage = getResizedBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.computer_pic),70,70);
 		try
 		{
-			mapFile = new MapFileReader(mapFileName, context); //get lab map for given lab (using lab406 for dummy), chosen lab decided by given lab clicked
+			mapFile = new MapFileReader(mapFileName, context); //get lab map for given lab
 		}
 		catch(IOException e)
 		{
